@@ -1,0 +1,123 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "integer spiral",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/x/y": {
+            "get": {
+                "tags": [
+                    "integer-spiral"
+                ],
+                "summary": "URL Format (URL Yapısı)",
+                "description": "It creates an integer spiral from the outside to the inside with the entered X and Y values and outputs as Json. Example: Request URL = /api/10/8 for X=10, Y=8 (Girilen X ve Y değerleri ile dıştan içe doğru integer spiral oluşturur ve Json olarak çıktı verir. Örnek: X=10, Y=8 için istek URL = /api/10/8)",
+                "operationId": "spiral",
+                "parameters": [
+                    {
+                        "name": "X",
+                        "in": "query",
+                        "description": "X Coordinate",
+                        "required": true
+                    },
+                    {
+                        "name": "Y",
+                        "in": "query",
+                        "description": "Y Coordinate",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "When X and Y coordinates are entered as 5 and 4 respectively, the following result is obtained. (X ve Y koordinatları sırasıyla 5 ve 4 girildiğinde aşağıdaki sonuç alınır.)",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "0": {
+                                            "type": "json",
+                                            "example": "{'0':0,'1':1,'2':2,'3':3,'4':4}"
+                                        },
+                                        "1": {
+                                            "type": "json",
+                                            "example": "{'4':5,'0':13,'1':14,'2':15,'3':16}"
+                                        },
+                                        "2": {
+                                            "type": "json",
+                                            "example": "{'4':6,'0':12,'3':17,'2':18,'1':19}"
+                                        },
+                                        "3": {
+                                            "type": "json",
+                                            "example": "{'4':7,'3':8,'2':9,'1':10,'0':11}"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "X and Y values are mandatory and must be integer.(X ve Y değerleri zorunludur ve integer olmalıdır.)",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error_code": {
+                                            "type": "json",
+                                            "example": "401"
+                                        },
+                                        "error_mesage": {
+                                            "type": "json",
+                                            "example": "X and Y values are mandatory and must be integer."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "402": {
+                        "description": "Calculation error (Hesaplama Hatası)",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error_code": {
+                                            "type": "json",
+                                            "example": "402"
+                                        },
+                                        "error_mesage": {
+                                            "type": "json",
+                                            "example": "Calculation error."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "X and Y values can be a maximum of 2000 (X ve Y değerleri maksimum 2000 olabilir)",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error_code": {
+                                            "type": "json",
+                                            "example": "403"
+                                        },
+                                        "error_mesage": {
+                                            "type": "json",
+                                            "example": "X and Y values can be a maximum of 2000."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
